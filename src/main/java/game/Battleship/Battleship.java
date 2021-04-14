@@ -9,4 +9,17 @@ public class Battleship {
 
     public void run() {
     }
+
+    public void showMenu() {
+    }
+
+    public void startNewGame() {
+    }
+
+    public void displayHighscores() {
+    }
+
+    public void Exit() {
+    }
+}
 }
