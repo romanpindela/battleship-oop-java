@@ -1,4 +1,4 @@
-package game;
+package game.Input;
 
 public class Input {
 }
