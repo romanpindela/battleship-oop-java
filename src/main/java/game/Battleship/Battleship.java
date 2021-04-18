@@ -22,4 +22,4 @@ public class Battleship {
     public void Exit() {
     }
 }
-}
+
