@@ -2,7 +2,10 @@ package game.Board;
 
 import java.util.ArrayList;
 import game.Settings.Settings;
+import game.Ship.PlacingDirection;
 import game.Ship.Ship;
+import game.Ship.ShipFormula;
+import game.Ship.ShipType;
 
 public class Board {
 
@@ -34,12 +37,15 @@ public class Board {
         return board;
     }
 
-    public static boolean isPlacementValid(Ship ship){
+    public boolean isPlacementValid(ShipFormula shipFormula){
         return true;
     }
 
-    public void placeShip(Ship ship){
-        //
+    public void placeShip(ShipFormula shipFormula){
+        // new ship
+
+        // add to shipList
+
     }
 
 

@@ -3,16 +3,23 @@ package game.Board;
 import game.Settings.Settings;
 
 public class Square {
-    char x;
+    int x;
     int y;
 
     SquareStatus.squareStatus status;
 
-    public Square(char x, int y, SquareStatus.squareStatus initStatus) {
+    public Square(int x, int y, SquareStatus.squareStatus initStatus) {
         this.x = x;
         this.y = y;
         this.status = initStatus;
     }
+
+    public Square(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.status = SquareStatus.squareStatus.EMPTY;
+    }
+
 
     public Square() {
         this.x = 0;
@@ -26,7 +33,7 @@ public class Square {
     }
 
 
-    public char getX() {
+    public int getX() {
         return x;
     }
 
