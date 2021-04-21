@@ -2,11 +2,9 @@ package game.Board;
 
 import java.util.ArrayList;
 import game.Settings.Settings;
+import game.Ship.Ship;
 
 public class Board {
-    public ArrayList<ArrayList<Square>> getBoard() {
-        return board;
-    }
 
     ArrayList<ArrayList<Square>> board;
 
@@ -32,10 +30,20 @@ public class Board {
 
     }
 
-
-    public static void isPlacementValid(){
-
+    public ArrayList<ArrayList<Square>> getBoard() {
+        return board;
     }
+
+    public static boolean isPlacementValid(Ship ship){
+
+        return true;
+    }
+
+    public void placeShip(Ship ship){
+        //
+    }
+
+
 
     
 

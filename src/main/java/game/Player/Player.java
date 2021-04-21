@@ -24,5 +24,14 @@ public class Player {
     }
 
 
+    public boolean placeShip(Ship ship){
+        if (this.board.isPlacementValid(ship)) {
+            this.board.placeShip(ship);
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 
 }
