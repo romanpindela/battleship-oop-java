@@ -35,7 +35,6 @@ public class Board {
     }
 
     public static boolean isPlacementValid(Ship ship){
-
         return true;
     }
 

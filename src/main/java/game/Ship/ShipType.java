@@ -10,6 +10,10 @@ public class ShipType{
         Carrier, Cruiser, Battleship, Submarine, Destroyer;
     }
 
+    public enum shipOrientation{
+        Vertical, Horizontal
+    }
+
     public static int getSize(shipType size){
         int health = switch (size) {
             case Destroyer -> 2;
