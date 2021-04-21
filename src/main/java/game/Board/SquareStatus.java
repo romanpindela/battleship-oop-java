@@ -12,7 +12,7 @@ public class SquareStatus{
         char result = switch (status) {
             case HIT -> 'H';
             case MISS -> 'M';
-            case EMPTY -> 'E';
+            case EMPTY -> '~';
             case DESTROYED -> 'D';
         };
         return result;

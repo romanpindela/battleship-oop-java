@@ -2,11 +2,12 @@ package game.Display;
 
 import game.Settings.Settings;
 import  java.util.ArrayList;
+import game.Board.*;
 
 public class DisplayBoard extends Display{
 
-    public void drawBoard(){
-        int boardSize = Settings.boardSize;
+    public void displayBoard(Board board){
+        int boardSize = board.getSize();
         char[] rowNames = Settings.rowNames.substring(0,boardSize).toCharArray();
 
         for(int columnIndex = 0; columnIndex < boardSize; columnIndex++){
@@ -20,7 +21,9 @@ public class DisplayBoard extends Display{
         for(int rowIndex = 0; rowIndex < boardSize; rowIndex++){
             System.out.print(rowNames[rowIndex] + " ");
             for(int columnIndex = 0; columnIndex < boardSize; columnIndex++){
-              System.out.print(Settings.signEmpty);
+                System.out.print(
+                                board.getBoard().get(rowIndex).get(columnIndex).getStatus() +" "
+                        );
             }
             System.out.println("");
         }
