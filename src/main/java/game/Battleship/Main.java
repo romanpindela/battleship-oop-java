@@ -4,17 +4,30 @@ import game.Board.Board;
 import game.Display.Display;
 import game.Display.DisplayBoard;
 import game.Input.Input;
+import game.Player.Player;
 
 public class Main {
     public static void main(String[] args) {
         Display display = new Display();
         //display.gameMenu();
 
-        Board board = new Board();
+
+
+ // tests
+
         DisplayBoard displayBoard = new DisplayBoard();
+/*      Board board = new Board();
         displayBoard.displayBoard(board);
 
         int[] newCoords = Input.changeCoordsFormat("A1");
         System.out.println(newCoords[0] + "" + newCoords[1]);
+        */
+
+
+        Player player = new Player();
+        player.placeShip();
+        displayBoard.displayBoard(player.board);
+
+
     }
 }

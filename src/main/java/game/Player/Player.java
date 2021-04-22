@@ -13,26 +13,18 @@ public class Player {
     public Board board;
     public Board oponentHitBoard;
 
-    public static void isAlive() {
-    }
-    public static void shot(){
-    }
-
     ArrayList<Ship> shipList;
 
-    public ArrayList<Ship> getShipList() {
-        return shipList;
+    public Player(){
+        this.board = new Board();
+        this.oponentHitBoard = new Board();
+        this.shipList = new ArrayList<Ship>();
     }
 
-    public void setShipList(ArrayList<Ship> shipList) {
-        this.shipList = shipList;
-    }
 
     public boolean placeShip(){
         // ask for shipFormula
-        ShipFormula shipFormula = new ShipFormula(new int[]{0,0},
-                                    ShipType.shipType.Carrier,
-                                    ShipType.shipOrientation.Horizontal);
+        ShipFormula shipFormula = askForShipFormula();
 
         // check and place if is possible to place ship on board
         boolean possibilityOfPlacingShip = this.board.isPlacementValid(shipFormula);
@@ -46,11 +38,30 @@ public class Player {
             Ship newShip = new Ship(shipFormula);
             this.shipList.add(newShip);
             // place new ship in player board
-            this.board.placeShip(newShip);
+            this.board.addShip(newShip);
             return true;
         }else{
             return false;
         }
+    }
+
+    public ShipFormula askForShipFormula(){
+
+        /*
+            miejsce dla Bartka - do określenie ShipFormula z inputów użytkownika
+
+            narazie jest na sztywno
+
+         */
+
+        return new ShipFormula(new int[]{0,0},
+                ShipType.shipType.Carrier,
+                ShipType.shipOrientation.Horizontal);
+    }
+
+    public static void isAlive() {
+    }
+    public static void shot(){
     }
 
 

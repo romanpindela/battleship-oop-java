@@ -5,7 +5,7 @@ import java.util.EnumMap;
 public class SquareStatus{
 
     public enum squareStatus{
-        HIT, MISS, EMPTY, DESTROYED;
+        HIT, MISS, EMPTY, DESTROYED, SHIP;
     }
 
     public static char getCharacter(squareStatus status){
@@ -14,6 +14,7 @@ public class SquareStatus{
             case MISS -> 'M';
             case EMPTY -> '~';
             case DESTROYED -> 'D';
+            case SHIP -> 'S';
         };
         return result;
     }

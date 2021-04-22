@@ -30,7 +30,6 @@ public class Board {
                         .add(new Square(rowNames[rowSquareIndex], columnSquareIndex, defaultStatus));
             }
         }
-
     }
 
     public ArrayList<ArrayList<Square>> getBoard() {
@@ -38,16 +37,24 @@ public class Board {
     }
 
     public boolean isPlacementValid(ShipFormula shipFormula){
+
+        // conditions for the correct placing of the ship
+        // 1'st condition
+
         return true;
     }
 
-    public void placeShip(Ship ship){
-        // add to shipList
+
+    public void addShip(Ship ship) {
+        int shipTypeSize = ship.size();
+        SquareStatus.squareStatus shipStatus = SquareStatus.squareStatus.SHIP;
+
+        for (int shipSquareIndex = 0; shipSquareIndex < shipTypeSize; shipSquareIndex++) {
+            int shipSquareX = ship.squares.get(shipSquareIndex).getX();
+            int shipSquareY = ship.squares.get(shipSquareIndex).getY();
+
+            this.board.get(shipSquareX).get(shipSquareY).setStatus(shipStatus);
+        }
 
     }
-
-
-
-    
-
 }
