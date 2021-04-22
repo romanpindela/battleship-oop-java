@@ -32,13 +32,19 @@ public class Player {
         // ask for shipFormula
         ShipFormula shipFormula = new ShipFormula(new int[]{0,0},
                                     ShipType.shipType.Carrier,
-                                    ShipType.shipOrientation.Horizontal,
-                                    PlacingDirection.placingDirection.Right);
+                                    ShipType.shipOrientation.Horizontal);
 
         // check and place if is possible to place ship on board
-        if (this.board.isPlacementValid(shipFormula)) {
+        boolean possibilityOfPlacingShip = this.board.isPlacementValid(shipFormula);
+        if (!possibilityOfPlacingShip){
+            shipFormula.revertPlacingDirection(); // check possibility of placing ship in opposite direction
+            possibilityOfPlacingShip = this.board.isPlacementValid(shipFormula);
+        }
+
+        if (possibilityOfPlacingShip) {
             // create new ship and add it to shipList
             Ship newShip = new Ship(shipFormula);
+            this.shipList.add(newShip);
             // place new ship in player board
             this.board.placeShip(newShip);
             return true;
