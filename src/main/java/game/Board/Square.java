@@ -6,7 +6,7 @@ public class Square {
     int x;
     int y;
 
-    SquareStatus.squareStatus status;
+    public SquareStatus.squareStatus status;
 
     public Square(int x, int y, SquareStatus.squareStatus initStatus) {
         this.x = x;

@@ -10,6 +10,7 @@ import game.Ship.PlacingDirection;
 
 public class Ship {
     public ArrayList<Square> squares;
+    public ShipType.shipOrientation shipOrientation;
 
     public Ship(ShipFormula shipFormula){
         this.squares = new ArrayList<Square>();
@@ -17,7 +18,7 @@ public class Ship {
         int startPointX = shipFormula.startCoord00[0];
         int startPointY = shipFormula.startCoord00[1];
         int shipTypeSize = ShipType.getSize(shipFormula.shipType);
-        ShipType.shipOrientation shipOrientation = shipFormula.shipOrientation;
+        this.shipOrientation = shipFormula.shipOrientation;
 
         int placingDirectionFactor = PlacingDirection.getPlacingDirectionFactor(shipFormula.placingDirection);
         SquareStatus.squareStatus shipSquareStatus = SquareStatus.squareStatus.SHIP;
