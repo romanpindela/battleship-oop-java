@@ -41,6 +41,7 @@ public class Board {
         // conditions for the correct placing of the ship
         // 1'st condition
 
+
         return true;
     }
 

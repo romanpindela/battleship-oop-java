@@ -26,6 +26,7 @@ public class Player {
         // ask for shipFormula
         ShipFormula shipFormula = askForShipFormula();
 
+
         // check and place if is possible to place ship on board
         boolean possibilityOfPlacingShip = this.board.isPlacementValid(shipFormula);
         if (!possibilityOfPlacingShip){

@@ -2,6 +2,7 @@ package game.Display;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import game.Board.Board;
 
 
 
@@ -56,7 +57,7 @@ public class Display {
 
                 //base work of menu using switch command
                 switch (choice) {
-                    case 1 -> changeMenu();
+                    case 1 -> printBoard();
                     case 2 -> changeMenu();
                     case 3 -> test = "test3";
                     case 4 -> test = "test4";
@@ -73,14 +74,24 @@ public class Display {
 
     //testing shutting down menu
     public void changeMenu(){
+        screenClear();
         this.menuOn = false;
         this.test = "chyba działa";
     }
 
     public void printBoard() {
+        //screenClear(); not working in intellij console, should be run from "true" console
+        this.menuOn = false;
+        Board board = new Board();
+        DisplayBoard displayBoard = new DisplayBoard();
+        displayBoard.displayBoard(board);
+        //should run asking for nickname and manual or auto placing method
+        //then proceed to printGamePlay();
+
     }
 
     public void printGamePlay() {
+
     }
 
     public void printOutcomeOfFinishedGame() {
@@ -88,7 +99,7 @@ public class Display {
 
     //method to clear the screen of terminal to simulate refreshing of the screen after an action
     public static void screenClear() {
-        System.out.print("\\033[H\\033[2J");
+        System.out.println("\\033[H\\033[2J");
         System.out.flush();
     }
 }
