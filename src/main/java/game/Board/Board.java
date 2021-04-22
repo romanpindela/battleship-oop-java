@@ -41,9 +41,7 @@ public class Board {
         return true;
     }
 
-    public void placeShip(ShipFormula shipFormula){
-        // new ship
-
+    public void placeShip(Ship ship){
         // add to shipList
 
     }
