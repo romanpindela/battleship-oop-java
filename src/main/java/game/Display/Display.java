@@ -99,7 +99,7 @@ public class Display {
 
     //method to clear the screen of terminal to simulate refreshing of the screen after an action
     public static void screenClear() {
-        System.out.println("\\033[H\\033[2J");
+        System.out.print("\\033[H\\033[2J");
         System.out.flush();
     }
 }

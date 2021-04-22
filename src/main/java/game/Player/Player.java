@@ -1,6 +1,8 @@
 package game.Player;
 
 import game.Board.Board;
+import game.Board.Square;
+import game.Board.SquareStatus;
 import game.Ship.PlacingDirection;
 import game.Ship.Ship;
 import game.Ship.ShipFormula;
@@ -15,6 +17,8 @@ public class Player {
     public String name;
     public Board board;
     public Board oponentHitBoard;
+    Ship[] fleet;
+    boolean destroyed;
 
     public ArrayList<Ship> shipList;
 
@@ -79,8 +83,25 @@ public class Player {
 
     public static void isAlive() {
     }
-    public static void shot(){
+
+
+    public boolean shootingLocation(Player opponent){
+        int[] shoot = changeCoordsFormat(getPlayerInputCoordinates());
+        for (Ship s: fleet){
+            if (s.isItAShip(shoot)){
+                return true;
+            }
+        }
+     return false;
     }
 
-
+    public void checkStatus(){
+        this.destroyed = true;
+        //maybe some kind of for loop to check SHIPS status as a count?
+        /*for (int i = 0; i < rozmiarFloty; i++){ //flota zawsze od 17
+            if (!flota[i].HIT()){
+                this.destroyed = false;
+            }
+        }*/
+    }
 }

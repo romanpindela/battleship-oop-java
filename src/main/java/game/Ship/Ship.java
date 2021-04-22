@@ -3,6 +3,7 @@ package game.Ship;
 import game.Board.Square;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import game.Board.SquareStatus;
 import game.Ship.ShipType;
@@ -40,6 +41,11 @@ public class Ship {
             Square newSquare = new Square(newSquareX, newSquareY, shipSquareStatus);
             this.squares.add(newSquare);
         }
+    }
+
+    //check for ship in squares
+    public boolean isItAShip(int[] SHIP){
+        return Arrays.asList(this.squares).contains(SHIP);
     }
 
 

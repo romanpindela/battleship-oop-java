@@ -1,11 +1,15 @@
 package game.Battleship;
 
 import game.Board.Board;
+import game.Player.Player;
 import game.Ship.Ship;
+import game.Battleship.FightPhase;
 
 public class Game extends Battleship {
-
-
+    boolean continueGame;
+    Player player1;
+    Player player2;
+    FightPhase fightPhase;
 
     public void Run() {
         /*
@@ -21,5 +25,11 @@ public class Game extends Battleship {
          */
 
     }
+
+    //condition to endgame status switch
+    private void updateGameStatus(){
+    }
+
+
 
 }
