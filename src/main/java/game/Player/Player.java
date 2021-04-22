@@ -6,6 +6,7 @@ import game.Ship.Ship;
 import game.Ship.ShipFormula;
 import game.Ship.ShipType;
 
+import javax.lang.model.type.NullType;
 import java.util.ArrayList;
 
 import static game.Input.Input.*;
@@ -48,7 +49,6 @@ public class Player {
     }
 
     public ShipFormula askForShipFormula(){
-<<<<<<< HEAD
 
         /*
             miejsce dla Bartka - do określenie ShipFormula z inputów użytkownika
@@ -86,10 +86,6 @@ public class Player {
 
          */
 
-        return new ShipFormula(new int[]{3,3},
-                ShipType.shipType.Carrier,
-                ShipType.shipOrientation.Horizontal);
-=======
         //variables from input
         int[] inputedCoordinates = changeCoordsFormat(getPlayerInputCoordinates());
         String inputedShipType = getPlayerInputShipType();
@@ -103,18 +99,19 @@ public class Player {
             case "Battleship" -> ShipType.shipType.Battleship;
             case "Submarine" -> ShipType.shipType.Submarine;
             case "Destroyer" -> ShipType.shipType.Destroyer;
+            default -> throw new IllegalStateException("Unexpected value: " + inputedShipType);
         };
 
         //selecting shipOrientation based on the provided input
         ShipType.shipOrientation shipOrientationFormula = switch(inputedShipOrientation) {
             case "Horizontal" -> ShipType.shipOrientation.Horizontal;
             case "Vertical" -> ShipType.shipOrientation.Vertical;
+            default -> throw new IllegalStateException("Unexpected value: " + inputedShipOrientation);
         };
 
         return new ShipFormula(inputedCoordinates,
                 shipTypeFormula,
                 shipOrientationFormula);
->>>>>>> 42103d1bf88d4e4724b07eea91ec0715a704c422
     }
 
     public static void isAlive() {
