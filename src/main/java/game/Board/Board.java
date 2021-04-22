@@ -1,11 +1,12 @@
 package game.Board;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Optional;
+
 import game.Settings.Settings;
-import game.Ship.PlacingDirection;
 import game.Ship.Ship;
 import game.Ship.ShipFormula;
-import game.Ship.ShipType;
 
 public class Board {
 
@@ -39,23 +40,23 @@ public class Board {
     public boolean isPlacementValid(ShipFormula shipFormula){
 
         Ship testedShip = new Ship(shipFormula);
-        boolean onBoardCondition = false;
-        boolean emptySquaresCondition = false;
-        boolean notNearAnotherShipCondition = false;
+        boolean onBoardCondition = true;
+        boolean emptySquaresCondition = true;
+        boolean notNearAnotherShipCondition = true;
 /*
          conditions for accepting placement of a ship build from shipFormula
 */
         // onBoard condition: ships' square are on board, ship fits on board
         onBoardCondition = onBoardCheck(testedShip);
-
+        if (!onBoardCondition){return false;};
         // emptySquares condition: squares for placing ship are empty
         emptySquaresCondition = emptySquaresCheck(testedShip);
-        
+        if (!emptySquaresCondition){return false;};
+
         // notNearAnotherShip condition: square around ship's square are also empty
         notNearAnotherShipCondition = notNearAnotherShipCheck(testedShip);
-        
-        return onBoardCondition && emptySquaresCondition && notNearAnotherShipCondition;
-
+        if (!notNearAnotherShipCondition){return false;}
+        else { return true;}
     }
 
     private boolean onBoardCheck(Ship testedShip) {
@@ -67,30 +68,39 @@ public class Board {
         int firstSquareIndex = 0;
         int lastSquareIndex = testedShip.size() - 1;
 
-        boolean firstSquareOnBoard = xMin < testedShip.squares.get(firstSquareIndex).getX() &&
-                testedShip.squares.get(firstSquareIndex).getX() < xMax &&
-                yMin < testedShip.squares.get(firstSquareIndex).getY() &&
-                testedShip.squares.get(firstSquareIndex).getY() < yMax;
+        boolean firstSquareOnBoard = xMin <= testedShip.squares.get(firstSquareIndex).getX() &&
+                testedShip.squares.get(firstSquareIndex).getX() <= xMax &&
+                yMin <= testedShip.squares.get(firstSquareIndex).getY() &&
+                testedShip.squares.get(firstSquareIndex).getY() <= yMax;
 
-        boolean lastSquareOnBoard = xMin < testedShip.squares.get(lastSquareIndex).getX() &&
-                testedShip.squares.get(lastSquareIndex).getX() < xMax &&
-                yMin < testedShip.squares.get(lastSquareIndex).getY() &&
-                testedShip.squares.get(lastSquareIndex).getY() < yMax;
+        boolean lastSquareOnBoard = xMin <= testedShip.squares.get(lastSquareIndex).getX() &&
+                testedShip.squares.get(lastSquareIndex).getX() <= xMax &&
+                yMin <= testedShip.squares.get(lastSquareIndex).getY() &&
+                testedShip.squares.get(lastSquareIndex).getY() <= yMax;
 
         return ( firstSquareOnBoard && lastSquareOnBoard);
     }
 
 
     private boolean emptySquaresCheck(Ship testedShip) {
+        int xMin = 0;
+        int yMin = 0;
+        int xMax = Settings.globalBoardSize - 1;
+        int yMax = Settings.globalBoardSize - 1;
+
         int firstSquareIndex = 0;
         int lastSquareIndex = testedShip.size() - 1;
         boolean emptySquaresCheck = true;
         for (int squareIndex = 0; squareIndex <= lastSquareIndex; squareIndex++) {
             int squareX = testedShip.squares.get(squareIndex).getX();
             int squareY = testedShip.squares.get(squareIndex).getY();
-            if (this.board.get(squareX).get(squareY).status != SquareStatus.squareStatus.EMPTY){
-                emptySquaresCheck = false;
-                break;
+
+            if (squareX >= xMin && squareX <= xMax &&
+                squareY >= yMin && squareX <= yMax){ // square (squareX, squareY) is on board
+                if (this.board.get(squareX).get(squareY).status != SquareStatus.squareStatus.EMPTY){
+                    emptySquaresCheck = false;
+                    break;
+                }
             }
         }
         return emptySquaresCheck;
@@ -107,24 +117,55 @@ public class Board {
 
         boolean notNearAnotherShipCheck = true;
 
-/*        testedShip.squares.forEach(square -> squareCheck(square));
+        int squaresCountWithNotNearAnotherShip = (int) testedShip.squares.stream()
+                .filter(square -> squareCheckFreeSpaceAround(square, testedShip))
+                .count();
 
-        testedShip.squares.stream().fi*/
+        if (squaresCountWithNotNearAnotherShip == testedShip.squares.size()){
+            return notNearAnotherShipCheck = true;
+        }else{
+            return notNearAnotherShipCheck = false;
+        }
+    }
 
-        for (int squareIndex = 0; squareIndex <= lastSquareIndex; squareIndex++) {
-        // check for every square: checking if there are empty spaces around
-        // or there is no such space (ship near the edge)
+    private boolean squareCheckFreeSpaceAround(Square s, Ship testedShip) {
+        boolean squaresAroundAreEmpty;
+        ArrayList<Square> squares = new ArrayList<Square>();
 
-
-        // additional checking the corner of the beginning and end of the ship
+        if (s.y-1 >= 0){
+            Square squareUp = this.board.get(s.x).get(s.y-1);
+            if (!testedShip.squares.contains(squareUp)){
+            squares.add(squareUp);}
+        }
+        if (s.y+1 < this.size){
+            Square squareDown = this.board.get(s.x).get(s.y+1);
+            if (!testedShip.squares.contains(squareDown)){
+            squares.add(squareDown);}
+        }
+        if (s.x-1 >= 0){
+            Square squareLeft = this.board.get(s.x-1).get(s.y);
+            if (!testedShip.squares.contains(squareLeft)){
+            squares.add(squareLeft);}
+        }
+        if (s.x+1 < this.size){
+            Square squareRight = this.board.get(s.x+1).get(s.y);
+            if (!testedShip.squares.contains(squareRight)){
+            squares.add(squareRight);}
         }
 
-        return notNearAnotherShipCheck;
+        SquareStatus.squareStatus emptySign = SquareStatus.squareStatus.EMPTY;
+
+        Optional<Square> notEmptySquare = squares.stream()
+                .filter(square -> square.status != emptySign)
+                .findAny();
+
+        if (notEmptySquare.isPresent()){
+            return squaresAroundAreEmpty = false;
+        }else{
+            return squaresAroundAreEmpty = true;
+        }
     }
 
-    private boolean squareCheck(Square square) {
-        return false;
-    }
 
 
     public void addShip(Ship ship) {
@@ -137,6 +178,6 @@ public class Board {
 
             this.board.get(shipSquareX).get(shipSquareY).setStatus(shipStatus);
         }
-
+        int x;
     }
 }
