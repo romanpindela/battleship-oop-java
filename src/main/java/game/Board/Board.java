@@ -107,25 +107,11 @@ public class Board {
     }
 
     private boolean notNearAnotherShipCheck(Ship testedShip) {
-        int xMin = 0;
-        int yMin = 0;
-        int xMax = Settings.globalBoardSize - 1;
-        int yMax = Settings.globalBoardSize - 1;
-
-        int firstSquareIndex = 0;
-        int lastSquareIndex = testedShip.size() - 1;
-
-        boolean notNearAnotherShipCheck = true;
-
         int squaresCountWithNotNearAnotherShip = (int) testedShip.squares.stream()
                 .filter(square -> squareCheckFreeSpaceAround(square, testedShip))
                 .count();
 
-        if (squaresCountWithNotNearAnotherShip == testedShip.squares.size()){
-            return notNearAnotherShipCheck = true;
-        }else{
-            return notNearAnotherShipCheck = false;
-        }
+        return squaresCountWithNotNearAnotherShip == testedShip.squares.size();
     }
 
     private boolean squareCheckFreeSpaceAround(Square s, Ship testedShip) {

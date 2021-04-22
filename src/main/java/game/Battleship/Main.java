@@ -26,18 +26,6 @@ public class Main {
         */
         Player player = new Player();
 
-        ShipFormula shipFormula2 = player.askForShipFormula2();
-        ShipFormula shipFormula3 = player.askForShipFormula3();
-
-        Ship newShip2 = new Ship(shipFormula2);
-        player.shipList.add(newShip2);
-        player.board.addShip(newShip2);
-
-        Ship newShip3 = new Ship(shipFormula3);
-        player.shipList.add(newShip3);
-        player.board.addShip(newShip3);
-
-
         player.placeShip();
         displayBoard.displayBoard(player.board);
 

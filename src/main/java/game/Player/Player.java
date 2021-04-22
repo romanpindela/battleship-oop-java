@@ -49,43 +49,6 @@ public class Player {
     }
 
     public ShipFormula askForShipFormula(){
-
-        /*
-            miejsce dla Bartka - do określenie ShipFormula z inputów użytkownika
-
-            narazie jest na sztywno
-
-         */
-
-        return new ShipFormula(new int[]{5,0},
-                ShipType.shipType.Carrier,
-                ShipType.shipOrientation.Vertical);
-    }
-
-
-    public ShipFormula askForShipFormula2(){
-
-        /*
-            miejsce dla Bartka - do określenie ShipFormula z inputów użytkownika
-
-            narazie jest na sztywno
-
-         */
-
-        return new ShipFormula(new int[]{5,0},
-                ShipType.shipType.Carrier,
-                ShipType.shipOrientation.Horizontal);
-    }
-
-    public ShipFormula askForShipFormula3(){
-
-        /*
-            miejsce dla Bartka - do określenie ShipFormula z inputów użytkownika
-
-            narazie jest na sztywno
-
-         */
-
         //variables from input
         int[] inputedCoordinates = changeCoordsFormat(getPlayerInputCoordinates());
         String inputedShipType = getPlayerInputShipType();
