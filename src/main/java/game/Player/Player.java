@@ -8,6 +8,8 @@ import game.Ship.ShipType;
 
 import java.util.ArrayList;
 
+import static game.Input.Input.*;
+
 public class Player {
     public String name;
     public Board board;
@@ -47,17 +49,30 @@ public class Player {
     }
 
     public ShipFormula askForShipFormula(){
+        //variables from input
+        int[] inputedCoordinates = changeCoordsFormat(getPlayerInputCoordinates());
+        String inputedShipType = getPlayerInputShipType();
+        String inputedShipOrientation = getPlayerInputShipOrientation();
 
-        /*
-            miejsce dla Bartka - do określenie ShipFormula z inputów użytkownika
 
-            narazie jest na sztywno
+        //selecting shipType based on the provided input
+        ShipType.shipType shipTypeFormula = switch(inputedShipType) {
+            case "Carrier" -> ShipType.shipType.Carrier;
+            case "Cruiser" -> ShipType.shipType.Cruiser;
+            case "Battleship" -> ShipType.shipType.Battleship;
+            case "Submarine" -> ShipType.shipType.Submarine;
+            case "Destroyer" -> ShipType.shipType.Destroyer;
+        };
 
-         */
+        //selecting shipOrientation based on the provided input
+        ShipType.shipOrientation shipOrientationFormula = switch(inputedShipOrientation) {
+            case "Horizontal" -> ShipType.shipOrientation.Horizontal;
+            case "Vertical" -> ShipType.shipOrientation.Vertical;
+        };
 
-        return new ShipFormula(new int[]{0,0},
-                ShipType.shipType.Carrier,
-                ShipType.shipOrientation.Horizontal);
+        return new ShipFormula(inputedCoordinates,
+                shipTypeFormula,
+                shipOrientationFormula);
     }
 
     public static void isAlive() {

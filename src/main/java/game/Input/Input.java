@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class Input {
-    public static String getPlayerInput() {
+    public static String getPlayerInputCoordinates() {
         //local variables
         Scanner input = new Scanner(System.in);
         String[] legalFirstCoord = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J"};
@@ -49,10 +49,6 @@ public class Input {
         return coordinates;
     }
 
-
-    public static void isMoveOnBoard(){
-    }
-
     public static void isFieldAlreadyTaken(){
     }
 
@@ -62,6 +58,48 @@ public class Input {
         int secondCoord = Character.getNumericValue(A1Coords.toCharArray()[1]) - 1;
         return new int[]{firstCoord, secondCoord};
     }
+
+    public static String getPlayerInputShipType() {
+        //local variables
+        Scanner input = new Scanner(System.in);
+        String[] legalShipTypes = {"Carrier", "Cruiser", "Battleship", "Submarine", "Destroyer"};
+        String userShipType;
+
+        //getting ship type and checking if the input's valid
+        System.out.println("Chose ship type (Carrier, Cruiser, Battleship, Submarine, Destroyer)");
+        while (true) {
+            userShipType = input.next();
+            boolean isOnTheList = Arrays.asList(legalShipTypes).contains(userShipType);
+            if (isOnTheList == true) {
+                break;
+            } else {
+                System.out.println("Must be one of the legal types (Carrier, Cruiser, Battleship, Submarine, Destroyer)");
+            }
+        }
+        return userShipType;
+    }
+
+    public static String getPlayerInputShipOrientation() {
+        //local variables
+        Scanner input = new Scanner(System.in);
+        String[] legalOrientation = {"Vertical", "Horizontal"};
+        String userShipOrientation;
+
+        //getting ship orientation and checking if the input's valid
+        System.out.println("Chose ship orientation (Vertical/Horizontal)");
+        while (true) {
+            userShipOrientation = input.next();
+            boolean isOnTheList = Arrays.asList(legalOrientation).contains(userShipOrientation);
+            if (isOnTheList == true) {
+                break;
+            } else {
+                System.out.println("Must be Vertical or Horizontal");
+            }
+        }
+        return userShipOrientation;
+    }
+
+
 
 
 
