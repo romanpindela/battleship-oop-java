@@ -11,9 +11,8 @@ import game.Ship.ShipFormula;
 
 public class Main {
     public static void main(String[] args) {
-        Display display = new Display();
-        //display.gameMenu();
-
+        Battleship battleship = new Battleship();
+        battleship.run();
 
 
  // tests
@@ -25,14 +24,15 @@ public class Main {
         int[] newCoords = Input.changeCoordsFormat("A1");
         System.out.println(newCoords[0] + "" + newCoords[1]);
         */
-        ComputerPlayer player = new ComputerPlayer();
+
+/*        ComputerPlayer player = new ComputerPlayer();
 
         player.placeNewShip();
         player.placeNewShip();
         player.placeNewShip();
         player.placeNewShip();
         player.placeNewShip();
-        displayBoard.displayBoard(player.board);
+        displayBoard.displayBoard(player.board);*/
 
 
     }

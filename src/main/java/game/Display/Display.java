@@ -1,5 +1,6 @@
 package game.Display;
 
+import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 import game.Board.Board;
@@ -24,8 +25,8 @@ public class Display {
     public static final String ANSI_WHITE = "\u001B[37m";
 
 
-    public void gameMenu() {
-        int choice;
+    public int gameMenu() {
+        int choice = 5;
 
         //printing simple menu in console TODO: colors, ASCII graphics, error handling
         System.out.println(ANSI_CYAN + "\n" +
@@ -45,13 +46,13 @@ public class Display {
                 "                                           \n" + ANSI_RESET);
         System.out.println(ANSI_PURPLE + "1. Player vs Player");
         System.out.println("2. Player vs AI");
-        System.out.println("3. AI vs AI");
+        System.out.println(ANSI_YELLOW + "3. AI vs AI" + ANSI_PURPLE);
         System.out.println("4. Highscores" + ANSI_RESET);
         System.out.println(ANSI_RED + "5. Exit" + ANSI_RESET);
         System.out.println(ANSI_YELLOW + "Enter your choice(1-5)" + ANSI_RESET);
 
 
-        while (menuOn) {
+       do{
             try {
                 choice = sc.nextInt();
 
@@ -69,7 +70,8 @@ public class Display {
                 System.out.println(ANSI_RED + "Provide a number from 1 to 5!" + ANSI_RESET);
                 sc.nextLine();
             }
-        }
+       } while (menuOn);
+        return choice;
     }
 
     //testing shutting down menu
