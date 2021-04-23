@@ -22,10 +22,21 @@ public class DisplayBoard extends Display{
             System.out.print(rowNames[rowIndex] + " ");
             for(int columnIndex = 0; columnIndex < boardSize; columnIndex++){
                 System.out.print(
-                                board.getBoard().get(rowIndex).get(columnIndex).getStatus() +" "
+                                colorBoard(board.getBoard().get(rowIndex).get(columnIndex).getStatus()) + " "
                         );
             }
             System.out.println("");
         }
+    }
+
+    private String colorBoard(char s) {
+        return switch(s){
+            case 'H' -> ANSI_RED + s + ANSI_RESET;
+            case 'M' -> ANSI_CYAN + s + ANSI_RESET;
+            case '~' -> ANSI_BLUE + s + ANSI_RESET;
+            case 'D' -> ANSI_PURPLE + s + ANSI_RESET;
+            case 'S' -> ANSI_YELLOW + s + ANSI_RESET;
+            default -> throw new IllegalStateException("Unexpected value: " + s);
+        };
     }
 }
