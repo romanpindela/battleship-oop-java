@@ -1,5 +1,6 @@
 package game.Player;
 
+import game.Battleship.FightPhase;
 import game.Board.Board;
 import game.Board.Square;
 import game.Board.SquareStatus;
@@ -14,7 +15,7 @@ import java.util.ArrayList;
 
 import static game.Input.Input.*;
 
-public class Player {
+public class Player extends FightPhase {
     public String name;
     public Board board;
     public Board oponentHitBoard;

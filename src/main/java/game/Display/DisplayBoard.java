@@ -6,6 +6,10 @@ import game.Board.*;
 
 public class DisplayBoard extends Display{
 
+
+    public DisplayBoard() {
+    }
+
     public void displayBoard(Board board){
         int boardSize = board.getSize();
         char[] rowNames = Settings.rowNames.substring(0,boardSize).toCharArray();

@@ -9,4 +9,5 @@ public class Settings {
     public static int globalBoardSize = 10;
     public static String rowNames = "abcdefghijklmnopqrstuvwxyz".toUpperCase(Locale.ROOT);
     public static SquareStatus.squareStatus defaultSquareStatus = SquareStatus.squareStatus.EMPTY;
+    public static int globalNumberOfShips = 5;
 }

@@ -11,6 +11,15 @@ import game.Ship.ShipFormula;
 
 public class Main {
     public static void main(String[] args) {
+//        ComputerPlayer computerPlayer = new ComputerPlayer();
+//        Player player = new Player();
+//        DisplayBoard dB = new DisplayBoard();
+//        BoardFactory boardFactory = new BoardFactory();
+//        boardFactory.randomPlacement(computerPlayer);
+//        boardFactory.randomPlacement(player);
+//        dB.displayBoard((computerPlayer.board));
+//
+
         Battleship battleship = new Battleship();
         battleship.run();
 

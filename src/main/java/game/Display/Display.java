@@ -12,7 +12,6 @@ public class Display {
     Scanner sc = new Scanner(System.in);
     boolean menuOn = true;
 
-
     //declaring the colors for terminal output
     public static final String ANSI_RESET = "\u001B[0m"; //used to revert to the original color of terminal font
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -23,7 +22,6 @@ public class Display {
     public static final String ANSI_PURPLE = "\u001B[35m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_WHITE = "\u001B[37m";
-
 
     public int gameMenu() {
         int choice = 5;

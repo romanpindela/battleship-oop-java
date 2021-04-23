@@ -1,6 +1,7 @@
 package game.Battleship;
 
 import game.Display.Display;
+import game.Display.DisplayBoard;
 import game.Input.Input;
 import game.Battleship.Game;
 
@@ -8,6 +9,7 @@ import java.sql.SQLOutput;
 
 public class Battleship {
     protected Display display;
+
     protected Input input;
     protected int gameMode;
     protected Game game;
@@ -52,9 +54,9 @@ public class Battleship {
     }
 
     private void startNewGame() {
-        this.game = new Game();
-        this.game.run();
         System.out.println("Starting new game..");
+        this.game = new Game(this.gameMode);
+        this.game.run();
     }
 
     private void displayHighscores() {

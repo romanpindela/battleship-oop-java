@@ -1,6 +1,7 @@
 package game.Battleship;
 
 import game.Board.Board;
+import game.Display.DisplayBoard;
 import game.Player.Player;
 import game.Player.ComputerPlayer;
 import game.Ship.Ship;
@@ -10,35 +11,59 @@ public class Game extends Battleship {
     boolean continueGame;
     Player player1;
     Player player2;
-    FightPhase fightPhase;
 
-    public Game() {
-        switch(super.gameMode){
-            case 1: // player vs player;
+    protected DisplayBoard displayBoard;
+
+    BoardFactory boardFactory;
+    FightPhase fightPhase;
+    int gameMode;
+
+    public Game(){
+        displayBoard = new DisplayBoard();
+    }
+
+    public Game(int gameMode) {
+        displayBoard = new DisplayBoard();
+        this.gameMode = gameMode;
+
+        switch (this.gameMode) {
+// player vs player;
+            case 1 -> {
                 this.player1 = new Player();
                 this.player2 = new Player();
-                break;
-            case 2: // player vs ai;
+            }
+// player vs ai;
+            case 2 -> {
                 this.player1 = new Player();
                 this.player2 = new ComputerPlayer();
-                break;
-            case 3: // ai vs ai;
+            }
+// ai vs ai;
+            case 3 -> {
                 this.player1 = new ComputerPlayer();
                 this.player2 = new ComputerPlayer();
-                break;
-        }
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + this.gameMode);
+        };
 
     }
 
 
     public void run() {
-        /*
-        - first phase: ship placement
-        - second phase: real game
-        ------------------------------------
-         */
-        System.out.println("placement phase");
+        createPhaseBoardFactory();
+        // first phase: ship placement
+        this.boardFactory.askPlayersForShips(this.player1, this.player2, this.gameMode);
+        displayBoard.displayBoard(player1.board);
+        displayBoard.displayBoard(player2.board);
+
+        // second phase: real game
         System.out.println("fighting phase");
+        // should be..:
+        //this.fightPhase.fight();
+    }
+
+    private void createPhaseBoardFactory() {
+        this.boardFactory = new BoardFactory();
+        this.fightPhase = new FightPhase();
     }
 
     public void CheckPlayerMove() {
