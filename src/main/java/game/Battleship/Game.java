@@ -50,22 +50,26 @@ public class Game extends Battleship {
 
 
     public void run() {
-        createPhaseBoardFactory();
+        boardFactorPhase();
+        fightPhase();
+
+    }
+
+    public void boardFactorPhase(){
+        this.boardFactory = new BoardFactory();
         // first phase: ship placement
         this.boardFactory.askPlayersForShips(this.player1, this.player2, this.gameMode);
+        //displaying both players' boards
         displayBoard.displayBoard(player1.board);
         displayBoard.displayBoard(player2.board);
         Utils.pressAnyKeyToContinue();
-        // second phase: real game
-        System.out.println("fighting phase");
-        // should be..:
-        //this.fightPhase.fight();
-        Utils.pressAnyKeyToContinue();
     }
 
-    private void createPhaseBoardFactory() {
-        this.boardFactory = new BoardFactory();
+    public void fightPhase(){
         this.fightPhase = new FightPhase();
+        // second phase: real game
+        this.fightPhase.fight();
+        Utils.pressAnyKeyToContinue();
     }
 
     public void CheckPlayerMove() {

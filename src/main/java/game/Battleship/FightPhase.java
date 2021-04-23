@@ -1,11 +1,15 @@
 package game.Battleship;
 
 public class FightPhase extends Game{
-    private boolean lost;
+    public boolean lost;
 
     public FightPhase() {
     }
 
+
+    public void fight() {
+
+    }
 
     public boolean checkEndGame(){
         return this.lost;
