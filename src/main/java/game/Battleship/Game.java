@@ -6,6 +6,7 @@ import game.Player.Player;
 import game.Player.ComputerPlayer;
 import game.Ship.Ship;
 import game.Battleship.FightPhase;
+import game.Utils.Utils;
 
 public class Game extends Battleship {
     boolean continueGame;
@@ -54,11 +55,12 @@ public class Game extends Battleship {
         this.boardFactory.askPlayersForShips(this.player1, this.player2, this.gameMode);
         displayBoard.displayBoard(player1.board);
         displayBoard.displayBoard(player2.board);
-
+        Utils.pressAnyKeyToContinue();
         // second phase: real game
         System.out.println("fighting phase");
         // should be..:
         //this.fightPhase.fight();
+        Utils.pressAnyKeyToContinue();
     }
 
     private void createPhaseBoardFactory() {
