@@ -1,6 +1,7 @@
 package game.Player;
 
 import game.Battleship.FightPhase;
+import game.Battleship.Game;
 import game.Board.Board;
 import game.Board.Square;
 import game.Board.SquareStatus;
@@ -21,6 +22,8 @@ public class Player extends FightPhase {
     public Board oponentHitBoard;
     Ship[] fleet;
     boolean destroyed;
+    Game game = new Game();
+    Square square = new Square();
 
     public ArrayList<Ship> shipList;
 
@@ -66,20 +69,22 @@ public class Player extends FightPhase {
     }
 
 
-    public boolean shootingLocation(Player opponent){
+    public int[] shootingLocation(Player opponent){
+        ArrayList<Ship> shipListofOpponnet = opponent.shipList;
         int[] shoot = changeCoordsFormat(getPlayerInputCoordinates());
-        for (Ship s: fleet){
-            if (s.isItAShip(shoot)){
-                return true;
+            if (shipListofOpponnet.contains(shoot)){
+                return new int[]{square.getX(), square.getY()};
+                //updateSquareStatus();
+            } else if (!shipListofOpponnet.contains(shoot)){
+                return new int[]{square.getX(), square.getY()};
+
             }
-        }
-     return false;
     }
 
     public void checkStatus(){
         this.destroyed = true;
         //maybe some kind of for loop to check SHIPS status as a count?
-        /*for (int i = 0; i < rozmiarFloty; i++){ //flota zawsze od 17
+        /*for (int i = 0; i < rozmiarFloty; i++){ //flota zawsze ma 17 pol typu Ship
             if (!flota[i].HIT()){
                 this.destroyed = false;
             }

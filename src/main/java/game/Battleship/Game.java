@@ -8,10 +8,13 @@ import game.Ship.Ship;
 import game.Battleship.FightPhase;
 import game.Utils.Utils;
 
+import java.util.ArrayList;
+
 public class Game extends Battleship {
     boolean continueGame;
-    Player player1;
-    Player player2;
+    boolean turn;
+    public Player player1;
+    public Player player2;
 
     protected DisplayBoard displayBoard;
 
@@ -67,9 +70,18 @@ public class Game extends Battleship {
 
     public void fightPhase(){
         this.fightPhase = new FightPhase();
-        // second phase: real game
-        this.fightPhase.fight();
-        Utils.pressAnyKeyToContinue();
+        while(continueGame){
+            if (turn){
+                player1.shootingLocation(player2);
+                turn = false;
+                Utils.pressAnyKeyToContinue();
+            } else {
+                player2.shootingLocation(player1);
+                turn = true;
+                Utils.pressAnyKeyToContinue();
+            }
+        }
+
     }
 
     public void CheckPlayerMove() {
