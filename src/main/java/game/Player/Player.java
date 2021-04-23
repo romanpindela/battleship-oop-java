@@ -3,6 +3,7 @@ package game.Player;
 import game.Board.Board;
 import game.Board.Square;
 import game.Board.SquareStatus;
+import game.Input.Input;
 import game.Ship.PlacingDirection;
 import game.Ship.Ship;
 import game.Ship.ShipFormula;
@@ -23,15 +24,20 @@ public class Player {
     public ArrayList<Ship> shipList;
 
     public Player(){
+        this.name = "Human";
         this.board = new Board();
         this.oponentHitBoard = new Board();
         this.shipList = new ArrayList<Ship>();
     }
 
 
-    public boolean placeShip(){
+    public boolean placeNewShip(){
+        ShipFormula shipFormula = Input.askForShipFormulaManual();
+        return placeShip(shipFormula);
+    }
+
+     boolean placeShip(ShipFormula shipFormula){
         // ask for shipFormula
-        ShipFormula shipFormula = askForShipFormula();
 
         // check and place if is possible to place ship on board
         boolean possibilityOfPlacingShip = this.board.isPlacementValid(shipFormula);
@@ -40,17 +46,18 @@ public class Player {
             possibilityOfPlacingShip = this.board.isPlacementValid(shipFormula);
         }
 
-
+        boolean placingSuccess;
         if (possibilityOfPlacingShip) {
             // create new ship and add it to shipList
             Ship newShip = new Ship(shipFormula);
             this.shipList.add(newShip);
             // place new ship in player board
             this.board.addShip(newShip);
-            return true;
+            placingSuccess = true;
         }else{
-            return false;
+            placingSuccess = false;
         }
+        return placingSuccess;
     }
 
 

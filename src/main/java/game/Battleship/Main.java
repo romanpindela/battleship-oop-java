@@ -4,6 +4,7 @@ import game.Board.Board;
 import game.Display.Display;
 import game.Display.DisplayBoard;
 import game.Input.Input;
+import game.Player.ComputerPlayer;
 import game.Player.Player;
 import game.Ship.Ship;
 import game.Ship.ShipFormula;
@@ -24,9 +25,13 @@ public class Main {
         int[] newCoords = Input.changeCoordsFormat("A1");
         System.out.println(newCoords[0] + "" + newCoords[1]);
         */
-        Player player = new Player();
+        ComputerPlayer player = new ComputerPlayer();
 
-        player.placeShip();
+        player.placeNewShip();
+        player.placeNewShip();
+        player.placeNewShip();
+        player.placeNewShip();
+        player.placeNewShip();
         displayBoard.displayBoard(player.board);
 
 

@@ -5,13 +5,14 @@ import game.Ship.ShipFormula;
 import game.Ship.ShipType;
 
 import java.util.Arrays;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Input {
 
 
 
-    public static ShipFormula askForShipFormula(){
+    public static ShipFormula askForShipFormulaManual(){
         //variables from input
         int[] inputedCoordinates = changeCoordsFormat(getPlayerInputCoordinates());
         String inputedShipType = getPlayerInputShipType();
@@ -39,6 +40,43 @@ public class Input {
                 shipTypeFormula,
                 shipOrientationFormula);
     }
+
+
+    public static ShipFormula askForShipFormulaComputer(){
+
+        int [] randomStartSquareCoords;
+        ShipType.shipType randomShipType;
+        ShipType.shipOrientation randomShipOrientation;
+
+        Random random = new Random();
+        int startX = random.nextInt(Settings.globalBoardSize + 1);
+        int startY = random.nextInt(Settings.globalBoardSize + 1);
+        randomStartSquareCoords = new int[]{startX, startY};
+
+        int numberOfShipTYpes = 5;
+        int randomShipTypeIndex = 1 + random.nextInt(numberOfShipTYpes);
+        randomShipType = switch(randomShipTypeIndex) {
+            case 1 -> ShipType.shipType.Carrier;
+            case 2 -> ShipType.shipType.Cruiser;
+            case 3 -> ShipType.shipType.Battleship;
+            case 4 -> ShipType.shipType.Submarine;
+            case 5 -> ShipType.shipType.Destroyer;
+            default -> throw new IllegalStateException("Unexpected value: " + randomShipTypeIndex);
+        };
+
+        int numberOfShipOrientations = 2;
+        int randomShipOrientationIndex = 1 + random.nextInt(numberOfShipOrientations);
+        randomShipOrientation = switch(randomShipOrientationIndex){
+            case 1 -> ShipType.shipOrientation.Horizontal;
+            case 2 -> ShipType.shipOrientation.Vertical;
+            default -> throw new IllegalStateException("Unexpected value: " + randomShipOrientationIndex);
+        };
+
+        return new ShipFormula(randomStartSquareCoords,
+                randomShipType,
+                randomShipOrientation);
+    }
+
 
 
 
