@@ -1,11 +1,48 @@
 package game.Input;
 
 import game.Settings.Settings;
+import game.Ship.ShipFormula;
+import game.Ship.ShipType;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
 public class Input {
+
+
+
+    public static ShipFormula askForShipFormula(){
+        //variables from input
+        int[] inputedCoordinates = changeCoordsFormat(getPlayerInputCoordinates());
+        String inputedShipType = getPlayerInputShipType();
+        String inputedShipOrientation = getPlayerInputShipOrientation();
+
+
+        //selecting shipType based on the provided input
+        ShipType.shipType shipTypeFormula = switch(inputedShipType) {
+            case "Carrier" -> ShipType.shipType.Carrier;
+            case "Cruiser" -> ShipType.shipType.Cruiser;
+            case "Battleship" -> ShipType.shipType.Battleship;
+            case "Submarine" -> ShipType.shipType.Submarine;
+            case "Destroyer" -> ShipType.shipType.Destroyer;
+            default -> throw new IllegalStateException("Unexpected value: " + inputedShipType);
+        };
+
+        //selecting shipOrientation based on the provided input
+        ShipType.shipOrientation shipOrientationFormula = switch(inputedShipOrientation) {
+            case "Horizontal" -> ShipType.shipOrientation.Horizontal;
+            case "Vertical" -> ShipType.shipOrientation.Vertical;
+            default -> throw new IllegalStateException("Unexpected value: " + inputedShipOrientation);
+        };
+
+        return new ShipFormula(inputedCoordinates,
+                shipTypeFormula,
+                shipOrientationFormula);
+    }
+
+
+
+
     public static String getPlayerInputCoordinates() {
         //local variables
         Scanner input = new Scanner(System.in);
