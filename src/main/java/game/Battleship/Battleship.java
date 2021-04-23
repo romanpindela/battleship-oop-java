@@ -2,12 +2,15 @@ package game.Battleship;
 
 import game.Display.Display;
 import game.Input.Input;
+import game.Battleship.Game;
 
 import java.sql.SQLOutput;
 
 public class Battleship {
     protected Display display;
     protected Input input;
+    protected int gameMode;
+    protected Game game;
 
     public Battleship() {
         this.display = new Display();
@@ -26,7 +29,8 @@ public class Battleship {
                 case 1:
                 case 2:
                 case 3:
-                    startNewGame(gameFlow);
+                    this.gameMode = gameFlow;
+                    startNewGame();
                     gameFlow = 0;
                     break;
                 case 4:
@@ -47,7 +51,9 @@ public class Battleship {
         return this.display.gameMenu();
     }
 
-    private void startNewGame(int modeGame) {
+    private void startNewGame() {
+        this.game = new Game();
+        this.game.run();
         System.out.println("Starting new game..");
     }
 

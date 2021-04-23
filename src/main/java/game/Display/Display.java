@@ -65,7 +65,7 @@ public class Display {
                     case 5 -> System.exit(0);
                     default -> System.out.println(ANSI_RED + "Provide a number from 1 to 5!" + ANSI_RESET);
                 }
-                System.out.println(test);
+                menuOn = false;
             } catch (InputMismatchException e) {
                 System.out.println(ANSI_RED + "Provide a number from 1 to 5!" + ANSI_RESET);
                 sc.nextLine();
