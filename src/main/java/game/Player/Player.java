@@ -38,7 +38,7 @@ public class Player extends FightPhase {
         ShipFormula shipFormula = Input.askForShipFormulaManual();
         return placeShip(shipFormula);
     }
-    
+
      boolean placeShip(ShipFormula shipFormula){
         // ask for shipFormula
 
