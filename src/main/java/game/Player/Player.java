@@ -34,7 +34,6 @@ public class Player extends FightPhase {
         this.shipList = new ArrayList<Ship>();
     }
 
-
     public boolean placeNewShip(){
         ShipFormula shipFormula = Input.askForShipFormulaManual();
         return placeShip(shipFormula);
@@ -65,10 +64,6 @@ public class Player extends FightPhase {
     }
 
 
-    public static void isAlive() {
-    }
-
-
     public int[] shootingLocation(Player opponent){
         ArrayList<Ship> shipListofOpponnet = opponent.shipList;
         int[] shoot = changeCoordsFormat(getPlayerInputCoordinates());
@@ -79,6 +74,7 @@ public class Player extends FightPhase {
                 return new int[]{square.getX(), square.getY()};
 
             }
+            return null;
     }
 
     public void checkStatus(){

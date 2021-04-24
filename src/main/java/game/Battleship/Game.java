@@ -1,6 +1,8 @@
 package game.Battleship;
 
 import game.Board.Board;
+import game.Board.Square;
+import game.Board.SquareStatus;
 import game.Display.DisplayBoard;
 import game.Player.Player;
 import game.Player.ComputerPlayer;
@@ -17,6 +19,8 @@ public class Game extends Battleship {
     public Player player2;
 
     protected DisplayBoard displayBoard;
+
+    Square square = new Square();
 
     BoardFactory boardFactory;
     FightPhase fightPhase;
@@ -68,28 +72,33 @@ public class Game extends Battleship {
         Utils.pressAnyKeyToContinue();
     }
 
+    public void gameStatus(){
+        if (!player1.shipList.contains(square.getStatus())){
+            continueGame = false;
+        } else if (!player2.shipList.contains(square.getStatus())){
+            continueGame = false;
+        }
+    }
+
     public void fightPhase(){
         this.fightPhase = new FightPhase();
         while(continueGame){
             if (turn){
                 player1.shootingLocation(player2);
+                gameStatus();
                 turn = false;
                 Utils.pressAnyKeyToContinue();
             } else {
                 player2.shootingLocation(player1);
+                gameStatus();
                 turn = true;
                 Utils.pressAnyKeyToContinue();
             }
+
         }
 
     }
 
-    public void CheckPlayerMove() {
-        /*
-        -check player move
-         */
-
-    }
 
     //condition to endgame status switch
     private void updateGameStatus(){
