@@ -30,6 +30,7 @@ public class Game extends Battleship {
         displayBoard = new DisplayBoard();
     }
 
+
     public Game(int gameMode) {
         displayBoard = new DisplayBoard();
         this.gameMode = gameMode;
@@ -72,6 +73,7 @@ public class Game extends Battleship {
         Utils.pressAnyKeyToContinue();
     }
 
+
     public void gameStatus(){
         if (!player1.shipList.contains(square.getStatus())){
             continueGame = false;
@@ -79,6 +81,7 @@ public class Game extends Battleship {
             continueGame = false;
         }
     }
+
 
     public void fightPhase(){
         this.fightPhase = new FightPhase();
