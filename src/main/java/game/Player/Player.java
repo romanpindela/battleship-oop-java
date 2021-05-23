@@ -27,11 +27,14 @@ public class Player extends FightPhase {
 
     public ArrayList<Ship> shipList;
 
-    public Player(){
-        this.name = "Human";
-        this.board = new Board();
-        this.oponentHitBoard = new Board();
-        this.shipList = new ArrayList<Ship>();
+    public Player(String name, Board board, Board oponentHitBoard, ArrayList<Ship> shipList, Game game, Square square)
+    {
+        this.name = name;
+        this.board = board;
+        this.oponentHitBoard = oponentHitBoard;
+        this.shipList = shipList;
+        this.game = game;
+        this.square = square;
     }
 
     public boolean placeNewShip(){

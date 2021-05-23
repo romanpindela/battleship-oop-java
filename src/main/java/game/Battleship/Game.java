@@ -38,12 +38,12 @@ public class Game extends Battleship {
         switch (this.gameMode) {
 // player vs player;
             case 1 -> {
-                this.player1 = new Player();
-                this.player2 = new Player();
+                this.player1 = new Player("newPlayer1Name", new Board(), new Board(), new ArrayList<Ship>(), game, square);
+                this.player2 = new Player("newPlayer2Name", new Board(), new Board(), new ArrayList<Ship>(), game, square);
             }
 // player vs ai;
             case 2 -> {
-                this.player1 = new Player();
+                this.player1 = new Player("newPlayer1Name", new Board(), new Board(), new ArrayList<Ship>(), game, square);
                 this.player2 = new ComputerPlayer();
             }
 // ai vs ai;
